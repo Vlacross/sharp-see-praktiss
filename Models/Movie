@@ -1,0 +1,10 @@
+using System;
+using Sytem.ComponentModel.DataAnnotations;
+
+namespace RazorPagesMovie.Models
+{
+    public class RazorPagesMovie
+    {
+        public int ID { get; set; }
+    }
+}

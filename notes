@@ -1,0 +1,165 @@
+Contents:
+>Different kinds of classes in c#
+>Types of variables
+>Access Specifiers
+>Abstract methods
+
+
+Current repo Code-along tutorial link:
+    https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/model?view=aspnetcore-3.1&tabs=visual-studio-mac
+
+
+Different kinds of classes in c#:
+    https://www.c-sharpcorner.com/UploadFile/0c1bb2/types-of-classes-in-C-Sharp1/
+    https://www.c-sharpcorner.com/blogs/access-modifiers-in-c-sharp1
+
+Keypoints about classes:
+    Classes are reference types that hold the object created dynamically in a heap
+    All classes have a base type of System.object
+    the default access modifier of a class in internal
+    the defaullt access modifier of methods and variables in Private
+    Directly inside the namespaces, declaration of of private classes is not allowed
+
+Class Typeps:
+    Abstract
+    Partial
+    Sealed
+    Static
+
+
+Types of variables:
+    https://www.geeksforgeeks.org/c-sharp-types-of-variables/
+
+    C# var types include:
+        Local variables:
+            Anything declared within a block, method, or constructor.
+            created when the block is entered/func is called - destroyed after exitting block/after func returns.
+            scope only exists within block where declared.
+        Instance vars (non static):
+            Are declared in a class but outside any method, contructor, or block.
+            Are created when an object of the class is created and destroyed when the obj is destroyed.
+            Unlike local vars, we can use access specifiers for instance variables
+        Static variables / Class variables:
+            Any variables declared with the `static` modifier or declared under any static block.
+            Similar to the instance vars, but static vars are declared with the `static` keyword within a class 
+              outside any method constructor or block.
+            Unlike instance vars, we can only have one copy of a static var per class irrespective of how many 
+              objects we create.
+            Are created at the start of program execution and destroyed automatically when execution ends.
+                using System;
+                class Emp {
+                    static double salary;
+                    static String name = "Aks";
+
+                    publice static void Main (String [] args)
+                    {
+                        emp.salary = 100000; /* <- accessing static var without obj */
+
+                        Console.WriteLine(Emp.name + "'s average salary:"
+                                                                        + Emp.salary);
+                    }
+                }
+            Differences between instance and static vars:
+                each obj will have it's own fopy of isntance vars whereas we can only have on copy of a static var
+                   per class irrespective of how many objects we create.
+                Changes made in an instance var using one object will not be reflected in other objects as each has
+                  it's own copy. With Static vars, changes will be reflrected in other objects (as they are common 
+                  to all objects of a class.)
+                Can access instanc vars through object references and Static vars can be accessed directly using 
+                  class name.
+                In the life cycle of a class a staatic var is initialized only one time, wherease 0 instance vars are
+                  initialized if none are created and n times if n instances are created.
+                Syntax:
+                    class examples{
+                        static int a;   /* <--  static var  */
+                        int b;          /* <--  instance var  */
+                    }   
+        constant variables:
+            declared using the `const` keyword. 
+            Cannot be modifie after their declaration (so they need to be initialized when declared.) 
+            Can be declared in methods
+            cannot be used with `static` modifier
+            Fixed value for an entire class
+            AKA - Compile-time constant
+
+            Important noteson constant vars;
+                The behavior or constant vars will be similar to the behavior of static vars (initialized one and only
+                   one time in the life cycle of a class and doesn't require the instance of the class for accessing 
+                    or initializing)
+                The difference between `static` and `constant` is that static vars can be modified and constants cannot.
+        readonly variables:
+                https://www.c-sharpcorner.com/UploadFile/0c1bb2/read-only-and-constant-in-C-Sharp/
+            Can be initialized during declaration or in the constructor 
+            Can be declared only at the class level, not inside the method
+            Can be used with static modifier
+            Value can only be set throught the reference variable
+            are a runtime constant var
+            Similar to instance variable, only cannot be modified
+            Fixed value for an instance of a class
+            AKA - Runtime-time constant
+
+
+Access Specifiers:
+    https://www.c-sharpcorner.com/UploadFile/84c85b/oop-series-sharp2-understanding-access-specifier-with-C-Sharp/
+    https://www.c-sharpcorner.com/blogs/access-modifiers-in-c-sharp1
+
+    Access modifiers and specifiers are keywords used to specify accessibility of a type and it's members;
+        private:
+            limits the accessibility of a member to within the defined type: ex- if a var or a func is being created
+            in ClassA and declared as private, the another class (classB) cannot access ClassA.
+        public:
+            has no limits, any members or types defined as public can be accessed within the class assembly or outside. 
+        internal*:
+            Plays an important role when you want your class memebers to be accessible within the assembly. An assembly
+            is the produced .dll or .exe file from the c# code. Hence, with classes A, B, and C: any internal type and
+            memebers will become accessible across the classes within the assembly.
+        protected:
+            Plays a role when ingeritence is used. 
+            Any protected type becomes accessible when a child is inhereitted by the parent. In other cases (without 
+            inheritence) protected types and memebers are not visible.
+        protected internal:
+            Is a a combination ot protected and internal.
+            Is accessible within the assembly and also via ingeritance 
+
+
+
+Abstract methods (exampes in java):
+    https://www.geeksforgeeks.org/abstract-methods-in-java-with-examples/
+
+    Abstract methods are simply declared the the super/parent class with no implementation.
+    subclasses can then override them, making them more versatile to each sub-class.
+
+        abstract class A {
+            abstract void m1();
+
+            void m2()
+            {
+                System.out.println("This is "
+                                            + "a concrete method.");
+            }
+        }
+
+        class B extends A {
+            void m1()
+            {
+                System.out.println("B's "
+                                        + "implementation of m2.");
+            }
+        }
+
+        public class AbstractDemo {
+            public static void main(String args[])
+            {
+                B b = new B();
+                b.m1();
+                b.m2();
+            }
+        }
+    >>B's implementation of m2.
+    >>This is a concrete method.
+    
+
+
+
+
+
